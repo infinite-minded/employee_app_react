@@ -3,6 +3,7 @@ import React from 'react';
 
 type InputPropTypes = {
   setValue: (e) => void;
+  value?: string;
   label: string;
   type: 'text' | 'password';
 };
@@ -10,8 +11,13 @@ type InputPropTypes = {
 const Input: React.FC<InputPropTypes> = (props) => {
   return (
     <div className='input'>
-      <input className='inputField' type={props.type} onChange={props.setValue}></input>
-      <label className='inputLabel'>{props.label}</label>
+      <input
+        value={props.value}
+        className='inputField'
+        type={props.type}
+        onChange={props.setValue}
+      ></input>
+      {!props.value && <label className='inputLabel'>{props.label}</label>}
     </div>
   );
 };

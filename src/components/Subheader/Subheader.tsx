@@ -2,12 +2,23 @@ import React from 'react';
 import './styles.css';
 import ControlButton from '../Control-Button/Control-Button';
 
-const Subheader: React.FC = () => {
+type SubheaderPropType = {
+  heading: string;
+  controlButtonText: string;
+  type: string;
+};
+
+const Subheader: React.FC<SubheaderPropType> = (props) => {
   return (
     <div className='subheader'>
-      <div className='heading'>Employee List</div>
+      <div className='heading'>{props.heading}</div>
       <div className='subheader-items'>
-        <ControlButton></ControlButton>
+        {props.type !== 'none' && (
+          <ControlButton
+            type={props.type}
+            controlButtonText={props.controlButtonText}
+          ></ControlButton>
+        )}
       </div>
     </div>
   );

@@ -25,6 +25,53 @@
     font-size: 13px;
 }
 
+.viewEmployeeContainer {
+    box-shadow: 0px 3px 6px #00000029;
+    width: calc(100% - 360px);
+    margin-top: 10px;
+    margin-left: 315px;
+    margin-right: 15px;
+    background-color: #FDFDFD;
+    border-radius: 5px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    padding: 0 20px;
+    align-items: center;
+    font-weight: bold;
+    font-size: 13px;
+}
+
+.createEmployeeContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    box-shadow: 0px 3px 6px #00000029;
+    border-radius: 5px;
+    width: calc(100% - 360px);
+    margin-left: 315px;
+    margin-right: 15px;
+    padding-left: 10px;
+    padding-bottom: 10px;
+}
+
+.formContainer {
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: center;
+    border-radius: 5px;
+    padding-left: 10px;
+    padding-bottom: 10px;
+    gap: 30px;
+}
+
+.statusGrid {
+    margin: 0;
+    padding-top: 14px;
+}
+
 .attribHeading {
     width: calc(100%/6);
     display: flex;
@@ -37,4 +84,31 @@
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.createEmployeeButtons {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    padding-left: 10px;
+    padding-top: 10px;
+}
+
+.createEmployeeCreateButton {
+    border-radius: 5px;
+    min-width: 200px;
+    height: 40px;
+    background-color: #03AEEE;
+    color: #FFFFFF;
+    cursor: pointer;
+}
+
+.createEmployeeCancelButton {
+    border: 1px solid #8A8C8F;
+    border-radius: 5px;
+    min-width: 200px;
+    height: 40px;
+    background-color: #FFFFFF;
+    color: #8A8C8F;
+    cursor: pointer;
 }

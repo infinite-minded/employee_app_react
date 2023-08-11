@@ -3,7 +3,7 @@ import './styles.css';
 import Status from '../Status/Status';
 import { useNavigate } from 'react-router-dom';
 
-type EmployeeDetailsPropType = {
+type EmployeeRowPropType = {
   id: number;
   name: string;
   email: string;
@@ -12,7 +12,7 @@ type EmployeeDetailsPropType = {
   address: string;
 };
 
-const EmployeeDetails: React.FC<EmployeeDetailsPropType> = (props) => {
+const EmployeeRow: React.FC<EmployeeRowPropType> = (props) => {
   const { id, name, email, role, status, address } = props;
   const navigate = useNavigate();
 
@@ -37,4 +37,4 @@ const EmployeeDetails: React.FC<EmployeeDetailsPropType> = (props) => {
   );
 };
 
-export default EmployeeDetails;
+export default EmployeeRow;

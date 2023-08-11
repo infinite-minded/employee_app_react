@@ -1,39 +1,13 @@
 import React from 'react';
-import EmployeeDetails from '../../components/Employee-Details/Employee-Details';
+import EmployeeRow from '../../components/Employee-Row/Employee-Row';
 import './styles.css';
 import EmployeeLayout from '../../layout/Employee-Layout';
-
-const data = [
-  {
-    id: 1,
-    name: 'John Paul',
-    email: 'johnpaul@gmai.com',
-    role: 'Developer',
-    status: true,
-    address: '123 Flat, ABC Place'
-  },
-  {
-    id: 2,
-    name: 'Logan Walker',
-    email: 'loganwalker@gmai.com',
-    role: 'HR',
-    status: true,
-    address: '123 Flat, ABC Place'
-  },
-  {
-    id: 3,
-    name: 'Dominic Toretto',
-    email: 'dominictoretto@gmai.com',
-    role: 'Admin',
-    status: false,
-    address: '123 Flat, ABC Place'
-  }
-];
+import data from '../../constants/data';
 
 const ListEmployee: React.FC = () => {
   return (
     <div className='employeeListContainer'>
-      <EmployeeLayout>
+      <EmployeeLayout type='listmenu' heading='Employee List' controlButtonText='Create employee'>
         <div className='employeeAtrribs'>
           <div className='attribHeading'>Employee Name</div>
           <div className='attribHeading'>Employee Email</div>
@@ -45,7 +19,7 @@ const ListEmployee: React.FC = () => {
           <div className='attribHeading'>Action</div>
         </div>
         {data.map((emp) => (
-          <EmployeeDetails
+          <EmployeeRow
             key={emp.id}
             id={emp.id}
             name={emp.name}
@@ -53,7 +27,7 @@ const ListEmployee: React.FC = () => {
             role={emp.role}
             status={emp.status}
             address={emp.address}
-          ></EmployeeDetails>
+          ></EmployeeRow>
         ))}
       </EmployeeLayout>
     </div>

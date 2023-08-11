@@ -34,7 +34,7 @@
 .controlButtonBox {
     padding-left: 20px;
     padding-right: 20px;
-    width: fit-content;
+    width: 150px;
     background-color: #eaf9ff;
     height: 52.5px;
     border-top-right-radius: 50px;
@@ -45,4 +45,9 @@
     font-size: 14px;
     font-weight: 300;
     color: #1f1f1f;
+}
+
+.editControlIcon {
+    filter: invert(100%) sepia(100%) saturate(15%) hue-rotate(241deg) brightness(102%) contrast(101%);
+    width: 15px;
 }

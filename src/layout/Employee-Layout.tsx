@@ -4,14 +4,24 @@ import Sidebar from '../components/Sidebar/Sidebar';
 import SidebarButton from '../components/Sidebar/Sidebar-Button';
 import Subheader from '../components/Subheader/Subheader';
 
-const EmployeeLayout: React.FC = (props) => {
+type EmployeeLayoutPropType = {
+  heading: string;
+  controlButtonText: string;
+  type: string;
+};
+
+const EmployeeLayout: React.FC<EmployeeLayoutPropType> = (props) => {
   return (
     <>
       <Header />
       <Sidebar>
         <SidebarButton sideMenuText='Employee list' />
       </Sidebar>
-      <Subheader />
+      <Subheader
+        type={props.type}
+        heading={props.heading}
+        controlButtonText={props.controlButtonText}
+      />
       {props.children}
     </>
   );
