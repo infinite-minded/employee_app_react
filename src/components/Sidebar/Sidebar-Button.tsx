@@ -11,7 +11,7 @@ const SidebarButton: React.FC<SidebarPropType> = (props) => {
 
   return (
     <div className='sidemenubutton'>
-      <img src='assets/icons/employees.svg'></img>
+      <img className='buttonIcon' src='assets/icons/employees.svg'></img>
       <div className='sideMenuText'>{sideMenuText}</div>
     </div>
   );
