@@ -1,0 +1,38 @@
+* {
+    border: 1px;
+}
+
+.container {
+    display: flex;
+    height: 100vh;
+}
+
+.left {
+    width: 50%;
+    border: 15px solid white;
+    background: #03afee25 0% 0% no-repeat padding-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.banner {
+    width: 60%;
+}
+
+.right {
+    display: flex;
+    flex-grow: 1;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.logo {
+    width: 50%;
+}
+
+.invalid {
+    margin-top: 10px;
+    color: red;
+}
