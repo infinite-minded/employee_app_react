@@ -47,6 +47,7 @@ const ListEmployee: React.FC = () => {
         {data.map((emp) => (
           <EmployeeDetails
             key={emp.id}
+            id={emp.id}
             name={emp.name}
             email={emp.email}
             role={emp.role}

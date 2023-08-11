@@ -29,9 +29,9 @@
     cursor: pointer;
 }
 
-.buttonIcon {
+.buttonIconContainer {
     background-color: white;
-    border: 5px solid white;
+    border: 8px solid white;
     border-radius: 50%;
 }
 

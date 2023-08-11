@@ -17,11 +17,11 @@ const Login: FC = () => {
   return (
     <div className='container'>
       <section className='left'>
-        <img className='banner' src='assets/img/banner.png'></img>
+        <img className='banner' src='/assets/img/banner.png'></img>
       </section>
       <section className='right'>
         <div className='form'>
-          <img className='logo' src='assets/img/kv-logo.png'></img>
+          <img className='logo' src='/assets/img/kv-logo.png'></img>
           <Input type='text' label='Username' setValue={(e) => setUsername(e.target.value)} />
           <Input type='password' label='Password' setValue={(e) => setPassword(e.target.value)} />
           <Button type='button' text='Login' onClick={handleClick} />

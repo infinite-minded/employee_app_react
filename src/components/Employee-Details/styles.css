@@ -4,7 +4,7 @@
 }
 
 .employeeDetails {
-    box-shadow: 0px 3px 6px #00000029;
+    box-shadow: 5px 3px 9px #00000029;
     height: 50px;
     width: calc(100% - 360px);
     margin-top: 10px;
@@ -16,9 +16,11 @@
     align-items: center;
     font-weight:lighter;
     font-size: 13px;
+    cursor: pointer;
 }
 
 .employeeDetails:hover {
+    box-shadow: 5px 4px 2px #00000029;;
     background-color: #eaf9ff77;
 }
 
@@ -26,4 +28,28 @@
     width: calc(100%/6);
     display: flex;
     justify-content: center;
+}
+
+.actionButtons {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+}
+
+.actionButton {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    width: 10px;
+    height: 10px;
+}
+
+.deleteIcon {
+    filter: invert(39%) sepia(18%) saturate(4497%) hue-rotate(332deg) brightness(101%) contrast(96%);
+    width: 15px;
+}
+
+.editIcon {
+    filter: invert(72%) sepia(80%) saturate(4694%) hue-rotate(149deg) brightness(92%) contrast(87%);
+    width: 15px;
 }

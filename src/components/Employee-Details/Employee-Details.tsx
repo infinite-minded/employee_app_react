@@ -1,8 +1,10 @@
 import React from 'react';
 import './styles.css';
 import Status from '../Status/Status';
+import { useNavigate } from 'react-router-dom';
 
 type EmployeeDetailsPropType = {
+  id: number;
   name: string;
   email: string;
   role: string;
@@ -11,10 +13,11 @@ type EmployeeDetailsPropType = {
 };
 
 const EmployeeDetails: React.FC<EmployeeDetailsPropType> = (props) => {
-  const { name, email, role, status, address } = props;
+  const { id, name, email, role, status, address } = props;
+  const navigate = useNavigate();
 
   return (
-    <div className='employeeDetails'>
+    <div className='employeeDetails' onClick={() => navigate(`/employees/${id}`)}>
       <div className='attribs'>{name}</div>
       <div className='attribs'>{email}</div>
       <div className='attribs'>{role}</div>
@@ -22,9 +25,13 @@ const EmployeeDetails: React.FC<EmployeeDetailsPropType> = (props) => {
         <Status type={status} />
       </div>
       <div className='attribs'>{address}</div>
-      <div className='attribs'>
-        <button className='deleteButton'></button>
-        <button className='editButton'></button>
+      <div className='attribs actionButtons'>
+        <button className='actionButton'>
+          <img className='deleteIcon' src='/assets/icons/delete-button.svg'></img>
+        </button>
+        <button className='actionButton'>
+          <img className='editIcon' src='/assets/icons/edit-button.svg'></img>
+        </button>
       </div>
     </div>
   );
