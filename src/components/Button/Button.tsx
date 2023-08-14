@@ -11,8 +11,8 @@ const Button: React.FC<ButtonPropTypes> = (props) => {
   const { type, text, onClick } = props;
 
   return (
-    <div className='button'>
-      <button type={type} onClick={onClick}>
+    <div>
+      <button className='loginButton' type={type} onClick={onClick}>
         {text}
       </button>
     </div>

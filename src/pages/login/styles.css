@@ -28,6 +28,12 @@
     flex-direction: column;
 }
 
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
 .logo {
     width: 50%;
 }
