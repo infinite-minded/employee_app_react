@@ -1,10 +1,10 @@
 import React from 'react';
 import './styles.css';
 
-type ButtonPropTypes = {
+export type ButtonPropTypes = {
   type: 'button' | 'submit';
   text: string;
-  onClick: () => void;
+  onClick?: () => void;
 };
 
 const Button: React.FC<ButtonPropTypes> = (props) => {
@@ -12,7 +12,7 @@ const Button: React.FC<ButtonPropTypes> = (props) => {
 
   return (
     <div>
-      <button className='loginButton' type={type} onClick={onClick}>
+      <button className='loginButton' type={type} onClick={onClick} data-testid='button-test'>
         {text}
       </button>
     </div>
