@@ -60,12 +60,18 @@
     margin-top: 10px;
     display: flex;
     flex-wrap: wrap;
-    flex-direction: row;
-    align-items: center;
+    align-items: flex-start;
+    justify-content: flex-start;
     border-radius: 5px;
     padding-left: 10px;
     padding-bottom: 10px;
     gap: 60px;
+}
+
+.addressFormContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
 }
 
 .statusGrid {

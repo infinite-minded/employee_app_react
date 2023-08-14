@@ -57,7 +57,7 @@
     font-weight: 400;
     width: 200px;
     display: flex;
-    justify-content: center;
+    text-align: center;
     margin-bottom: 10px;
 }
 
@@ -65,6 +65,7 @@
     display: flex;
     flex-direction: row;
     gap: 8px;
+    margin-bottom: 15px;
 }
 
 .deleteBoxConfirm {
@@ -77,6 +78,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    border-radius: 5px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
 }
 
 .deleteBoxCancel {
@@ -90,6 +93,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    border-radius: 3px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
 }
 
 .employeeDetails {
@@ -114,7 +119,7 @@
 }
 
 .attribs {
-    width: calc(100%/6);
+    width: calc(100%/7);
     display: flex;
     justify-content: center;
 }

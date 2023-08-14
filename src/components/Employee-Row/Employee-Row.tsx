@@ -10,10 +10,11 @@ type EmployeeRowPropType = {
   role: string;
   status: boolean;
   address: string;
+  department: string;
 };
 
 const EmployeeRow: React.FC<EmployeeRowPropType> = (props) => {
-  const { id, name, email, role, status, address } = props;
+  const { id, name, email, role, status, address, department } = props;
   const navigate = useNavigate();
   const navigateToDetails = () => navigate(`/employees/${id}`);
   const [deleteClicked, setDeleteClicked] = useState(false);
@@ -60,6 +61,9 @@ const EmployeeRow: React.FC<EmployeeRowPropType> = (props) => {
           {role}
         </div>
         <div className='attribs' onClick={navigateToDetails}>
+          {department}
+        </div>
+        <div className='attribs' onClick={navigateToDetails}>
           <Status type={status} />
         </div>
         <div className='attribs' onClick={navigateToDetails}>
@@ -69,7 +73,7 @@ const EmployeeRow: React.FC<EmployeeRowPropType> = (props) => {
           <button className='actionButton' onClick={() => setDeleteClicked(true)}>
             <img className='deleteIcon' src='/assets/icons/delete-button.svg'></img>
           </button>
-          <button className='actionButton'>
+          <button className='actionButton' onClick={() => navigate(`/employees/${id}/edit`)}>
             <img className='editIcon' src='/assets/icons/edit-button.svg'></img>
           </button>
         </div>

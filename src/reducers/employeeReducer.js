@@ -1,4 +1,4 @@
-const data = [
+const initialState = [
   {
     id: 1,
     name: 'John Paul',
@@ -9,7 +9,8 @@ const data = [
       line1: '123 Flat',
       line2: 'ABC Place',
       pincode: '686666'
-    }
+    },
+    department: 'A'
   },
   {
     id: 2,
@@ -21,7 +22,8 @@ const data = [
       line1: '123 Flat',
       line2: 'ABC Place',
       pincode: '686666'
-    }
+    },
+    department: 'B'
   },
   {
     id: 3,
@@ -33,8 +35,19 @@ const data = [
       line1: '123 Flat',
       line2: 'ABC Place',
       pincode: '686666'
-    }
+    },
+    department: 'C'
   }
 ];
 
-export default data;
+export const employeeReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case 'EMPLOYEE:CREATE': {
+      const newState = [...state, action.payload.employee];
+
+      return newState;
+    }
+    default:
+      return state;
+  }
+};

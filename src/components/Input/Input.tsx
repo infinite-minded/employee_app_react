@@ -1,8 +1,8 @@
 import './styles.css';
 import React from 'react';
 
-type InputPropTypes = {
-  setValue: (e) => void;
+export type InputPropTypes = {
+  setValue?: (e) => void;
   value?: string;
   label: string;
   type: 'text' | 'password';
