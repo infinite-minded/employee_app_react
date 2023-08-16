@@ -15,7 +15,8 @@ const EmployeeForm: React.FC = () => {
   const employeesData = useSelector((state: any) => {
     return state.employees;
   });
-  const employee = employeesData.find((e) => Number(id) === e.id);
+  const emp = employeesData.find((e) => Number(id) === e.employee.id);
+  const employee = id ? emp.employee : null;
   const [name, setName] = useState(id ? employee.name : '');
   const [email, setEmail] = useState(id ? employee.email : '');
   const [role, setRole] = useState(id ? employee.role : '');

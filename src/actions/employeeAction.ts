@@ -1,6 +1,6 @@
 import { createAction } from '@reduxjs/toolkit';
 
-type EmployeeType = {
+export type EmployeeType = {
   employee: {
     id: number;
     name: string;

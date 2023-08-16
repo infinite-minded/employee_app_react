@@ -10,7 +10,8 @@ const ViewEmployee: React.FC = () => {
   const employeesData = useSelector((state: any) => {
     return state.employees;
   });
-  const employee = employeesData.find((e) => Number(id) === e.id);
+  const emp = employeesData.find((e) => Number(id) === e.employee.id);
+  const employee = emp.employee;
   const address =
     employee.address.line1 + ', ' + employee.address.line2 + ', ' + employee.address.pincode;
 

@@ -24,16 +24,22 @@ const ListEmployee: React.FC = () => {
           <div className='attribHeading'>Address</div>
           <div className='attribHeading'>Action</div>
         </div>
-        {employeesData.map((emp) => (
+        {employeesData.map((obj) => (
           <EmployeeRow
-            key={emp.id}
-            id={emp.id}
-            name={emp.name}
-            email={emp.email}
-            role={emp.role}
-            status={emp.status}
-            address={emp.address.line1 + ', ' + emp.address.line2 + ', ' + emp.address.pincode}
-            department={emp.department}
+            key={obj.employee.id}
+            id={obj.employee.id}
+            name={obj.employee.name}
+            email={obj.employee.email}
+            role={obj.employee.role}
+            status={obj.employee.status}
+            address={
+              obj.employee.address.line1 +
+              ', ' +
+              obj.employee.address.line2 +
+              ', ' +
+              obj.employee.address.pincode
+            }
+            department={obj.employee.department}
           ></EmployeeRow>
         ))}
       </EmployeeLayout>

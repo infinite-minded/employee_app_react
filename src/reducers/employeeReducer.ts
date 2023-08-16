@@ -1,63 +1,69 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { addEmployee, deleteEmployee, editEmployee } from '../actions/employeeAction';
+import { EmployeeType, addEmployee, deleteEmployee, editEmployee } from '../actions/employeeAction';
 
 const initialState = [
   {
-    id: 1,
-    name: 'John Paul',
-    email: 'johnpaul@gmai.com',
-    role: 'Developer',
-    status: true,
-    address: {
-      line1: '123 Flat',
-      line2: 'ABC Place',
-      pincode: '686666'
-    },
-    department: 1
+    employee: {
+      id: 1,
+      name: 'John Paul',
+      email: 'johnpaul@gmai.com',
+      role: 'Developer',
+      status: true,
+      address: {
+        line1: '123 Flat',
+        line2: 'ABC Place',
+        pincode: '686666'
+      },
+      department: 1
+    }
   },
   {
-    id: 2,
-    name: 'Logan Walker',
-    email: 'loganwalker@gmai.com',
-    role: 'HR',
-    status: true,
-    address: {
-      line1: '123 Flat',
-      line2: 'ABC Place',
-      pincode: '686666'
-    },
-    department: 2
+    employee: {
+      id: 2,
+      name: 'Logan Walker',
+      email: 'loganwalker@gmai.com',
+      role: 'HR',
+      status: true,
+      address: {
+        line1: '123 Flat',
+        line2: 'ABC Place',
+        pincode: '686666'
+      },
+      department: 2
+    }
   },
   {
-    id: 3,
-    name: 'Dominic Toretto',
-    email: 'dominictoretto@gmai.com',
-    role: 'Admin',
-    status: false,
-    address: {
-      line1: '123 Flat',
-      line2: 'ABC Place',
-      pincode: '686666'
-    },
-    department: 3
+    employee: {
+      id: 3,
+      name: 'Dominic Toretto',
+      email: 'dominictoretto@gmai.com',
+      role: 'Admin',
+      status: false,
+      address: {
+        line1: '123 Flat',
+        line2: 'ABC Place',
+        pincode: '686666'
+      },
+      department: 3
+    }
   }
-];
+] as Array<EmployeeType>;
 
 export const employeeReducer = createReducer(initialState, (builder) => {
   builder.addCase(addEmployee, (state, action) => {
-    state = [...state, action.payload.employee];
+    state = [...state, action.payload];
 
     return state;
   });
   builder.addCase(editEmployee, (state, action) => {
-    const index = state.filter((employee) => employee.id !== action.payload.employee.id);
+    const index = state.filter((obj) => obj.employee.id !== action.payload.employee.id);
 
-    state = [...index, action.payload.employee];
+    state = [...index, action.payload];
 
     return state;
   });
   builder.addCase(deleteEmployee, (state, action) => {
-    state = state.filter((employee) => employee.id !== action.payload.employee.id);
+    state = state.filter((obj) => obj.employee.id !== action.payload.employee.id);
 
     return state;
   });
