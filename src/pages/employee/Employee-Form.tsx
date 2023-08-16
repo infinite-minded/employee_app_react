@@ -8,6 +8,7 @@ import Input from '../../components/Input/Input';
 import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import Dropdown from '../../components/Dropdown/Dropdown';
+import { addEmployee, editEmployee } from '../../actions/employeeAction';
 
 const EmployeeForm: React.FC = () => {
   const { id } = useParams();
@@ -27,24 +28,41 @@ const EmployeeForm: React.FC = () => {
   const navigate = useNavigate();
 
   const handleSubmit = () => {
-    dispatch({
-      type: 'EMPLOYEE:CREATE',
-      payload: {
-        employee: {
-          id: 4,
-          name: name,
-          email: email,
-          role: role,
-          status: status === 'active' ? true : false,
-          address: {
-            line1: line1,
-            line2: line2,
-            pincode: pincode
-          },
-          department: department
-        }
-      }
-    });
+    id
+      ? dispatch(
+          editEmployee({
+            employee: {
+              id: Number(id),
+              name: name,
+              email: email,
+              role: role,
+              status: status === 'active' ? true : false,
+              address: {
+                line1: line1,
+                line2: line2,
+                pincode: pincode
+              },
+              department: Number(department)
+            }
+          })
+        )
+      : dispatch(
+          addEmployee({
+            employee: {
+              id: 4,
+              name: name,
+              email: email,
+              role: role,
+              status: status === 'active' ? true : false,
+              address: {
+                line1: line1,
+                line2: line2,
+                pincode: pincode
+              },
+              department: Number(department)
+            }
+          })
+        );
     navigate('/employees');
   };
 
@@ -70,22 +88,22 @@ const EmployeeForm: React.FC = () => {
               setValue={(e) => setEmail(e.target.value)}
             />
             <Dropdown
-              value={id ? department : department ? department : ''}
+              value={id ? department : ''}
               label='Department'
               onChange={(e) => setDepartment(e.target.value)}
-              options={['', 'A', 'B', 'C']}
+              options={['Department', '1', '2', '3']}
             />
             <Dropdown
-              value={id ? role : role ? role : ''}
+              value={id ? role : ''}
               label='Role'
               onChange={(e) => setRole(e.target.value)}
-              options={['', 'Developer', 'HR', 'Admin']}
+              options={['Role', 'Developer', 'HR', 'Admin']}
             />
             <Dropdown
-              value={id ? status : status ? status : ''}
+              value={id ? status : ''}
               label='Status'
               onChange={(e) => setStatus(e.target.value)}
-              options={['', 'active', 'inactive']}
+              options={['Status', 'active', 'inactive']}
             />
             <div className='addressFormContainer'>
               <Input

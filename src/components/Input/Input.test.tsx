@@ -15,4 +15,30 @@ describe('If input works properly', () => {
 
     if (element) expect(element.getAttribute('value')).toBe('name');
   });
+
+  test('If type text on input working', () => {
+    const InputProps: InputPropTypes = {
+      value: 'name',
+      label: 'Username',
+      type: 'text'
+    };
+
+    render(<Input {...InputProps} />);
+    const element = screen.getByTestId('input-test');
+
+    if (element) expect(element.getAttribute('type')).toBe('text');
+  });
+
+  test('If type password on input working', () => {
+    const InputProps: InputPropTypes = {
+      value: 'name',
+      label: 'Password',
+      type: 'password'
+    };
+
+    render(<Input {...InputProps} />);
+    const element = screen.getByTestId('input-test');
+
+    if (element) expect(element.getAttribute('type')).toBe('password');
+  });
 });

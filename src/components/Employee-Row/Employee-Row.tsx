@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import './styles.css';
 import Status from '../Status/Status';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { deleteEmployee } from '../../actions/employeeAction';
 
 type EmployeeRowPropType = {
   id: number;
@@ -18,6 +20,11 @@ const EmployeeRow: React.FC<EmployeeRowPropType> = (props) => {
   const navigate = useNavigate();
   const navigateToDetails = () => navigate(`/employees/${id}`);
   const [deleteClicked, setDeleteClicked] = useState(false);
+  const dispatch = useDispatch();
+  const handleDelete = () => {
+    dispatch(deleteEmployee({ employee: { id: Number(id) } }));
+    navigate('/employees');
+  };
 
   return (
     <>
@@ -36,7 +43,7 @@ const EmployeeRow: React.FC<EmployeeRowPropType> = (props) => {
             <div className='areYouSure'>Are you sure ?</div>
             <div className='confirmQuestion'>Do you really want to delete employee?</div>
             <div className='deleteBoxButtons'>
-              <button className='deleteBoxConfirm' type='button'>
+              <button className='deleteBoxConfirm' type='button' onClick={handleDelete}>
                 Confirm
               </button>
               <button
