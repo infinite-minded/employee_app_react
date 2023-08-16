@@ -1,18 +1,35 @@
 import Button from '../../components/Button/Button';
 import Input from '../../components/Input/Input';
-import { useState, type FC } from 'react';
+import { useState, type FC, useEffect } from 'react';
 import './styles.css';
 import { useNavigate } from 'react-router-dom';
+import { useLoginMutation } from './api';
 
 const Login: FC = () => {
-  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showError, setError] = useState(false);
   const navigate = useNavigate();
-  const handleClick = () => {
-    if (username && password) navigate('/employees');
+  const [login, { data: response, isSuccess }] = useLoginMutation();
+  const handleLogin = () => {
+    if (email && password)
+      login({
+        email: email,
+        password: password
+      });
     else setError(true);
   };
+  // const handleClick = () => {
+  //   if (email && password) navigate('/employees');
+  //   else setError(true);
+  // };
+
+  useEffect(() => {
+    if (isSuccess && response) {
+      localStorage.setItem('authToken', response.data.token);
+      navigate('/employees');
+    }
+  }, [response, isSuccess]);
 
   return (
     <div className='container'>
@@ -23,10 +40,10 @@ const Login: FC = () => {
         <div className='form'>
           <img className='logo' src='/assets/img/kv-logo.png'></img>
           <Input
-            value={username}
+            value={email}
             type='text'
-            label='Username'
-            setValue={(e) => setUsername(e.target.value)}
+            label='Email'
+            setValue={(e) => setEmail(e.target.value)}
           />
           <Input
             value={password}
@@ -34,7 +51,7 @@ const Login: FC = () => {
             label='Password'
             setValue={(e) => setPassword(e.target.value)}
           />
-          <Button type='button' text='Login' onClick={handleClick} />
+          <Button type='button' text='Login' onClick={handleLogin} />
           {showError && <div className='invalid'>Invalid input</div>}
         </div>
       </section>

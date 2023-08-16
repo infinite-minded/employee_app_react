@@ -1,14 +1,24 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+/* eslint-disable no-unused-vars */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import React, { useEffect, useState } from 'react';
+// import { useSelector } from 'react-redux';
 import EmployeeRow from '../../components/Employee-Row/Employee-Row';
 import './styles.css';
 import EmployeeLayout from '../../layout/Employee-Layout';
+import { useGetEmployeeListQuery } from './api';
 
 const ListEmployee: React.FC = () => {
-  const employeesData = useSelector((state: any) => {
-    //change any to a particular type - here it should be of type employee
-    return state.employees; //since we named it as employees in index.js under src/reducers
-  });
+  // const employeesData = useSelector((state: any) => {
+  //   //change any to a particular type - here it should be of type employee
+  //   return state.employees; //since we named it as employees in index.js under src/reducers
+  // });
+
+  const [employeesData, setData] = useState([]);
+  const { data: response, isSuccess } = useGetEmployeeListQuery('');
+
+  useEffect(() => {
+    if (response && isSuccess) setData(response.data);
+  }, [response, isSuccess]);
 
   return (
     <div className='employeeListContainer'>
@@ -26,20 +36,14 @@ const ListEmployee: React.FC = () => {
         </div>
         {employeesData.map((obj) => (
           <EmployeeRow
-            key={obj.employee.id}
-            id={obj.employee.id}
-            name={obj.employee.name}
-            email={obj.employee.email}
-            role={obj.employee.role}
-            status={obj.employee.status}
-            address={
-              obj.employee.address.line1 +
-              ', ' +
-              obj.employee.address.line2 +
-              ', ' +
-              obj.employee.address.pincode
-            }
-            department={obj.employee.department}
+            key={obj.id}
+            id={obj.id}
+            name={obj.name}
+            email={obj.email}
+            role={obj.role}
+            status={obj.status}
+            address={obj.address.line1 + ', ' + obj.address.line2 + ', ' + obj.address.pincode}
+            department={obj.department.name}
           ></EmployeeRow>
         ))}
       </EmployeeLayout>
