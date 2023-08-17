@@ -12,8 +12,11 @@ import Dropdown from '../../components/Dropdown/Dropdown';
 import {
   useCreateEmployeeMutation,
   useEditEmployeeMutation,
+  useGetDepartmentListQuery,
+  useGetRoleListQuery,
   useLazyGetEmployeeByIdQuery
 } from './api';
+import { deepStrictEqual } from 'assert';
 
 const EmployeeForm: React.FC = () => {
   const { id } = useParams();
@@ -22,10 +25,12 @@ const EmployeeForm: React.FC = () => {
   // });
   // const emp = employeesData.find((e) => Number(id) === e.employee.id);
   // const employee = id ? emp.employee : null;
-  const [createEmployee, { data: createResponse, isSuccess: createSuccess }] =
-    useCreateEmployeeMutation();
-  const [editEmployee, { data: editResponse, isSuccess: editSuccess }] = useEditEmployeeMutation();
+  const [createEmployee] = useCreateEmployeeMutation();
+  const [editEmployee] = useEditEmployeeMutation();
   const [getEmployee, { data: response }] = useLazyGetEmployeeByIdQuery();
+  const { data: departmentJSON, isSuccess: departmentResponseSuccess } =
+    useGetDepartmentListQuery('');
+  const { data: roleJSON, isSuccess: roleResponseSuccess } = useGetRoleListQuery('');
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -35,12 +40,39 @@ const EmployeeForm: React.FC = () => {
   const [line2, setLine2] = useState('');
   const [pincode, setPincode] = useState('');
   const [department, setDepartment] = useState('');
+  const [departmentIds, setDepartmentIds] = useState([]);
+  const [roles, setRoles] = useState([]);
   // const dispatch = useDispatch();
   const navigate = useNavigate();
 
   useEffect(() => {
     if (id) getEmployee(Number(id));
   }, []);
+
+  useEffect(() => {
+    if (departmentResponseSuccess && departmentJSON?.data) {
+      const deps = [];
+
+      departmentJSON.data.map((dep) => {
+        deps.push({ key: dep.id.toString(), value: dep.name });
+      });
+      console.log(deps);
+      setDepartmentIds(deps);
+    }
+  }, [departmentJSON]);
+
+  useEffect(() => {
+    if (roleResponseSuccess && roleJSON?.data) {
+      const roleObjects = [];
+
+      Object.entries(roleJSON.data).map(([index, role]) => {
+        roleObjects.push({ key: role, value: role });
+      });
+
+      console.log(roleObjects);
+      setRoles(roleObjects);
+    }
+  }, [roleJSON]);
 
   useEffect(() => {
     if (response?.data) {
@@ -122,19 +154,22 @@ const EmployeeForm: React.FC = () => {
               value={department}
               label='Department'
               onChange={(e) => setDepartment(e.target.value)}
-              options={['Department', '1', '2']}
+              options={departmentIds}
             />
             <Dropdown
               value={role}
               label='Role'
               onChange={(e) => setRole(e.target.value)}
-              options={['Role', 'UI', 'Developer', 'HR', 'Admin']}
+              options={roles}
             />
             <Dropdown
               value={status === 'true' || status === 'active' ? 'active' : 'inactive'}
               label='Status'
               onChange={(e) => setStatus(e.target.value)}
-              options={['active', 'inactive']}
+              options={[
+                { key: 'active', value: 'active' },
+                { key: 'inactive', value: 'inactive' }
+              ]}
             />
             <div className='addressFormContainer'>
               <Input

@@ -9,11 +9,13 @@ type SubheaderPropType = {
 };
 
 const Subheader: React.FC<SubheaderPropType> = (props) => {
+  const employeeRole = localStorage.getItem('employeeRole');
+
   return (
-    <div className='subheader'>
+    <div className={`subheader ${employeeRole !== 'Admin' && employeeRole !== 'HR' && 'disabled'}`}>
       <div className='heading'>{props.heading}</div>
       <div className='subheader-items'>
-        {props.type !== 'none' && (
+        {props.type !== 'none' && (employeeRole === 'HR' || employeeRole === 'Admin') && (
           <ControlButton
             type={props.type}
             controlButtonText={props.controlButtonText}

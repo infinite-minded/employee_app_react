@@ -24,6 +24,12 @@ export const employeeApi = baseApi.injectEndpoints({
       query: () => '/employees',
       providesTags: ['employee']
     }),
+    getDepartmentList: builder.query({
+      query: () => '/departments'
+    }),
+    getRoleList: builder.query({
+      query: () => '/roles'
+    }),
     getEmployeeById: builder.query({
       query: (id: number) => ({
         url: `/employees/${id}`,
@@ -62,5 +68,7 @@ export const {
   useLazyGetEmployeeByIdQuery,
   useDeleteEmployeeByIdMutation,
   useCreateEmployeeMutation,
-  useEditEmployeeMutation
+  useEditEmployeeMutation,
+  useGetDepartmentListQuery,
+  useGetRoleListQuery
 } = employeeApi;

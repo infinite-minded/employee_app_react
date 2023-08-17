@@ -30,3 +30,7 @@
     display: flex;
     gap: 0px;
 }
+
+.disabled {
+    justify-content: left;
+}

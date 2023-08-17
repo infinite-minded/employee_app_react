@@ -5,16 +5,16 @@ export type DropdownPropTypes = {
   onChange?: (e) => void;
   value?: string;
   label: string;
-  options: string[];
+  options: { key: string; value: string }[];
 };
 
 const Dropdown: React.FC<DropdownPropTypes> = (props) => {
   return (
     <div className='dropdown'>
       <select value={props.value} className='dropdownField' onChange={props.onChange}>
-        {props.options.map((optionVal) => (
+        {props.options.map((obj) => (
           <>
-            <option value={optionVal}>{optionVal}</option>
+            <option value={obj.key}>{obj.value}</option>
           </>
         ))}
       </select>

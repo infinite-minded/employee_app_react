@@ -27,6 +27,8 @@ const Login: FC = () => {
   useEffect(() => {
     if (isSuccess && response) {
       localStorage.setItem('authToken', response.data.token);
+      localStorage.setItem('employeeID', response.data.employeeDetails.id);
+      localStorage.setItem('employeeRole', response.data.employeeDetails.role);
       navigate('/employees');
     }
   }, [response, isSuccess]);
@@ -34,7 +36,7 @@ const Login: FC = () => {
   return (
     <div className='container'>
       <section className='left'>
-        <img className='banner' src='/assets/img/banner.png'></img>
+        <img className='banner' src='/assets/img/Banner.png'></img>
       </section>
       <section className='right'>
         <div className='form'>

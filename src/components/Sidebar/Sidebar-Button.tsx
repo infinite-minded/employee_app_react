@@ -3,11 +3,10 @@ import './styles.css';
 
 type SidebarPropType = {
   sideMenuText: string;
-  //   onClick: () => void;
 };
 
 const SidebarButton: React.FC<SidebarPropType> = (props) => {
-  const { sideMenuText /*onClick*/ } = props;
+  const { sideMenuText } = props;
 
   return (
     <div className='sidemenubutton'>

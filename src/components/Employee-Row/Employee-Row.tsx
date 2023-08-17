@@ -29,6 +29,10 @@ const EmployeeRow: React.FC<EmployeeRowPropType> = (props) => {
     setDeleteClicked(false);
     navigate('/employees');
   };
+  const employeeRole = localStorage.getItem('employeeRole');
+  const employeeID = localStorage.getItem('employeeID');
+  const roleAuthorised = employeeRole !== 'Admin' && employeeRole !== 'HR';
+  const sameID = Number(employeeID) === id;
 
   return (
     <>
@@ -44,20 +48,28 @@ const EmployeeRow: React.FC<EmployeeRowPropType> = (props) => {
                 X
               </button>
             </div>
-            <div className='areYouSure'>Are you sure ?</div>
-            <div className='confirmQuestion'>Do you really want to delete employee?</div>
-            <div className='deleteBoxButtons'>
-              <button className='deleteBoxConfirm' type='button' onClick={handleDelete}>
-                Confirm
-              </button>
-              <button
-                className='deleteBoxCancel'
-                type='button'
-                onClick={() => setDeleteClicked(false)}
-              >
-                Cancel
-              </button>
-            </div>
+            {sameID ? (
+              <div className='areYouSure'>
+                Contact another administrator or HR to delete your account!
+              </div>
+            ) : (
+              <>
+                <div className='areYouSure'>Are you sure ?</div>
+                <div className='confirmQuestion'>Do you really want to delete employee?</div>
+                <div className='deleteBoxButtons'>
+                  <button className='deleteBoxConfirm' type='button' onClick={handleDelete}>
+                    Confirm
+                  </button>
+                  <button
+                    className='deleteBoxCancel'
+                    type='button'
+                    onClick={() => setDeleteClicked(false)}
+                  >
+                    Cancel
+                  </button>
+                </div>
+              </>
+            )}
           </div>
         </div>
       ) : null}
@@ -80,11 +92,17 @@ const EmployeeRow: React.FC<EmployeeRowPropType> = (props) => {
         <div className='attribs' onClick={navigateToDetails}>
           {address}
         </div>
-        <div className='attribs actionButtons'>
-          <button className='actionButton' onClick={() => setDeleteClicked(true)}>
+        <div className={`attribs actionButtons ${roleAuthorised && 'notAllowed'}`}>
+          <button
+            className={`actionButton ${roleAuthorised && 'disableClick'}`}
+            onClick={() => setDeleteClicked(true)}
+          >
             <img className='deleteIcon' src='/assets/icons/delete-button.svg'></img>
           </button>
-          <button className='actionButton' onClick={() => navigate(`/employees/${id}/edit`)}>
+          <button
+            className={`actionButton ${roleAuthorised && 'disableClick'}`}
+            onClick={() => navigate(`/employees/${id}/edit`)}
+          >
             <img className='editIcon' src='/assets/icons/edit-button.svg'></img>
           </button>
         </div>
