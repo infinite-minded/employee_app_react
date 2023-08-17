@@ -8,6 +8,8 @@
     height: 77px;
     display: flex;
     align-items: left;
+    position: sticky;
+    top: 0px;
 }
 
 .logoDiv {

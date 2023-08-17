@@ -1,69 +1,93 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+// import { useDispatch, useSelector } from 'react-redux';
 import './styles.css';
 import EmployeeLayout from '../../layout/Employee-Layout';
 import Input from '../../components/Input/Input';
 import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import Dropdown from '../../components/Dropdown/Dropdown';
-import { addEmployee, editEmployee } from '../../actions/employeeAction';
+// import { addEmployee, editEmployee } from '../../actions/employeeAction';
+import {
+  useCreateEmployeeMutation,
+  useEditEmployeeMutation,
+  useLazyGetEmployeeByIdQuery
+} from './api';
 
 const EmployeeForm: React.FC = () => {
   const { id } = useParams();
-  const employeesData = useSelector((state: any) => {
-    return state.employees;
-  });
-  const emp = employeesData.find((e) => Number(id) === e.employee.id);
-  const employee = id ? emp.employee : null;
-  const [name, setName] = useState(id ? employee.name : '');
-  const [email, setEmail] = useState(id ? employee.email : '');
-  const [role, setRole] = useState(id ? employee.role : '');
-  const [status, setStatus] = useState(id ? employee.status : '');
-  const [line1, setLine1] = useState(id ? employee.address.line1 : '');
-  const [line2, setLine2] = useState(id ? employee.address.line2 : '');
-  const [pincode, setPincode] = useState(id ? employee.address.pincode : '');
-  const [department, setDepartment] = useState(id ? employee.department : '');
-  const dispatch = useDispatch();
+  // const employeesData = useSelector((state: any) => {
+  //   return state.employees;
+  // });
+  // const emp = employeesData.find((e) => Number(id) === e.employee.id);
+  // const employee = id ? emp.employee : null;
+  const [createEmployee, { data: createResponse, isSuccess: createSuccess }] =
+    useCreateEmployeeMutation();
+  const [editEmployee, { data: editResponse, isSuccess: editSuccess }] = useEditEmployeeMutation();
+  const [getEmployee, { data: response }] = useLazyGetEmployeeByIdQuery();
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [role, setRole] = useState('');
+  const [status, setStatus] = useState('true');
+  const [line1, setLine1] = useState('');
+  const [line2, setLine2] = useState('');
+  const [pincode, setPincode] = useState('');
+  const [department, setDepartment] = useState('');
+  // const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (id) getEmployee(Number(id));
+  }, []);
+
+  useEffect(() => {
+    if (response?.data) {
+      setName(response.data.name);
+      setEmail(response.data.email);
+      setRole(response.data.role);
+      setStatus(response.data.status.toString());
+      setLine1(response.data.address.line1);
+      setLine2(response.data.address.line2);
+      setPincode(response.data.address.pincode);
+      setDepartment(response.data.department.id.toString());
+    }
+  }, [response]);
 
   const handleSubmit = () => {
     id
-      ? dispatch(
-          editEmployee({
-            employee: {
-              id: Number(id),
-              name: name,
-              email: email,
-              role: role,
-              status: status === 'active' ? true : false,
-              address: {
-                line1: line1,
-                line2: line2,
-                pincode: pincode
-              },
-              department: Number(department)
-            }
-          })
-        )
-      : dispatch(
-          addEmployee({
-            employee: {
-              id: 4,
-              name: name,
-              email: email,
-              role: role,
-              status: status === 'active' ? true : false,
-              address: {
-                line1: line1,
-                line2: line2,
-                pincode: pincode
-              },
-              department: Number(department)
-            }
-          })
-        );
+      ? editEmployee({
+          id: Number(id),
+          name: name,
+          email: email,
+          password: password,
+          role: role,
+          status: status === 'active' ? true : false,
+          address: {
+            line1: line1,
+            line2: line2,
+            pincode: pincode
+          },
+          department: {
+            id: Number(department)
+          }
+        })
+      : createEmployee({
+          name: name,
+          email: email,
+          password: password,
+          role: role,
+          status: status === 'active' ? true : false,
+          address: {
+            line1: line1,
+            line2: line2,
+            pincode: pincode
+          },
+          department: {
+            id: Number(department)
+          }
+        });
     navigate('/employees');
   };
 
@@ -78,50 +102,56 @@ const EmployeeForm: React.FC = () => {
           <div className='formContainer'>
             <Input
               type='text'
-              value={id ? name : name ? name : ''}
+              value={name}
               label='Employee Name'
               setValue={(e) => setName(e.target.value)}
             />
             <Input
               type='text'
-              value={id ? email : email ? email : ''}
+              value={email}
               label='Employee Email'
               setValue={(e) => setEmail(e.target.value)}
             />
+            <Input
+              type='password'
+              value={password}
+              label='Employee Password'
+              setValue={(e) => setPassword(e.target.value)}
+            />
             <Dropdown
-              value={id ? department : ''}
+              value={department}
               label='Department'
               onChange={(e) => setDepartment(e.target.value)}
-              options={['Department', '1', '2', '3']}
+              options={['Department', '1', '2']}
             />
             <Dropdown
-              value={id ? role : ''}
+              value={role}
               label='Role'
               onChange={(e) => setRole(e.target.value)}
-              options={['Role', 'Developer', 'HR', 'Admin']}
+              options={['Role', 'UI', 'Developer', 'HR', 'Admin']}
             />
             <Dropdown
-              value={id ? status : ''}
+              value={status === 'true' || status === 'active' ? 'active' : 'inactive'}
               label='Status'
               onChange={(e) => setStatus(e.target.value)}
-              options={['Status', 'active', 'inactive']}
+              options={['active', 'inactive']}
             />
             <div className='addressFormContainer'>
               <Input
                 type='text'
-                value={id ? line1 : line1 ? line1 : null}
+                value={line1}
                 label='Address Line 1'
                 setValue={(e) => setLine1(e.target.value)}
               />
               <Input
                 type='text'
-                value={id ? line2 : line2 ? line2 : null}
+                value={line2}
                 label='Line 2'
                 setValue={(e) => setLine2(e.target.value)}
               />
               <Input
                 type='text'
-                value={id ? pincode : pincode ? pincode : null}
+                value={pincode}
                 label='Pincode'
                 setValue={(e) => setPincode(e.target.value)}
               />

@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import './styles.css';
 import Status from '../Status/Status';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { deleteEmployee } from '../../actions/employeeAction';
+import { useDeleteEmployeeByIdMutation } from '../../pages/employee/api';
+// import { useDispatch } from 'react-redux';
+// import { deleteEmployee } from '../../actions/employeeAction';
 
 type EmployeeRowPropType = {
   id: number;
@@ -20,9 +21,12 @@ const EmployeeRow: React.FC<EmployeeRowPropType> = (props) => {
   const navigate = useNavigate();
   const navigateToDetails = () => navigate(`/employees/${id}`);
   const [deleteClicked, setDeleteClicked] = useState(false);
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
+  const [deleteEmployee] = useDeleteEmployeeByIdMutation();
   const handleDelete = () => {
-    dispatch(deleteEmployee({ employee: { id: Number(id) } }));
+    deleteEmployee(Number(id));
+    // dispatch(deleteEmployee({ employee: { id: Number(id) } }));
+    setDeleteClicked(false);
     navigate('/employees');
   };
 

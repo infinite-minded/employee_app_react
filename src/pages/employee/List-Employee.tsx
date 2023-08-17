@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 // import { useSelector } from 'react-redux';
 import EmployeeRow from '../../components/Employee-Row/Employee-Row';
 import './styles.css';
@@ -12,13 +12,7 @@ const ListEmployee: React.FC = () => {
   //   //change any to a particular type - here it should be of type employee
   //   return state.employees; //since we named it as employees in index.js under src/reducers
   // });
-
-  const [employeesData, setData] = useState([]);
-  const { data: response, isSuccess } = useGetEmployeeListQuery('');
-
-  useEffect(() => {
-    if (response && isSuccess) setData(response.data);
-  }, [response, isSuccess]);
+  const { data: employeesData, isSuccess } = useGetEmployeeListQuery('');
 
   return (
     <div className='employeeListContainer'>
@@ -34,18 +28,20 @@ const ListEmployee: React.FC = () => {
           <div className='attribHeading'>Address</div>
           <div className='attribHeading'>Action</div>
         </div>
-        {employeesData.map((obj) => (
-          <EmployeeRow
-            key={obj.id}
-            id={obj.id}
-            name={obj.name}
-            email={obj.email}
-            role={obj.role}
-            status={obj.status}
-            address={obj.address.line1 + ', ' + obj.address.line2 + ', ' + obj.address.pincode}
-            department={obj.department.name}
-          ></EmployeeRow>
-        ))}
+        {isSuccess && employeesData.data
+          ? employeesData.data.map((obj) => (
+              <EmployeeRow
+                key={obj.id}
+                id={obj.id}
+                name={obj.name}
+                email={obj.email}
+                role={obj.role}
+                status={obj.status}
+                address={obj.address.line1 + ', ' + obj.address.line2 + ', ' + obj.address.pincode}
+                department={obj.department.name}
+              ></EmployeeRow>
+            ))
+          : null}
       </EmployeeLayout>
     </div>
   );
