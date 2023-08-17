@@ -19,6 +19,9 @@ const Login: FC = () => {
       });
     else setError(true);
   };
+  const handleKeyPress = (e) => {
+    if (e.charCode === 13) handleLogin();
+  };
   // const handleClick = () => {
   //   if (email && password) navigate('/employees');
   //   else setError(true);
@@ -52,6 +55,7 @@ const Login: FC = () => {
             type='password'
             label='Password'
             setValue={(e) => setPassword(e.target.value)}
+            onKeyPress={(e) => handleKeyPress(e)}
           />
           <Button type='button' text='Login' onClick={handleLogin} />
           {showError && <div className='invalid'>Invalid input</div>}

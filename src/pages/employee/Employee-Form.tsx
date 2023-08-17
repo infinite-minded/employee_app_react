@@ -123,6 +123,10 @@ const EmployeeForm: React.FC = () => {
     navigate('/employees');
   };
 
+  const handleKeyPress = (e) => {
+    if (e.charCode === 13) handleSubmit();
+  };
+
   return (
     <div className='employeeListContainer'>
       <EmployeeLayout
@@ -189,6 +193,7 @@ const EmployeeForm: React.FC = () => {
                 value={pincode}
                 label='Pincode'
                 setValue={(e) => setPincode(e.target.value)}
+                onKeyPress={(e) => handleKeyPress(e)}
               />
             </div>
           </div>

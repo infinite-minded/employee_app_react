@@ -6,6 +6,7 @@ export type InputPropTypes = {
   value?: string;
   label: string;
   type: 'text' | 'password';
+  onKeyPress?: (e) => void;
 };
 
 const Input: React.FC<InputPropTypes> = (props) => {
@@ -16,6 +17,7 @@ const Input: React.FC<InputPropTypes> = (props) => {
         className='inputField'
         type={props.type}
         onChange={props.setValue}
+        onKeyPress={props.onKeyPress}
         data-testid='input-test'
       ></input>
       {!props.value && <label className='inputLabel'>{props.label}</label>}
