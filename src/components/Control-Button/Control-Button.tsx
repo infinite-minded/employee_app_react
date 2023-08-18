@@ -3,7 +3,7 @@ import './styles.css';
 import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 
-type ControlButtonPropType = {
+export type ControlButtonPropType = {
   controlButtonText: string;
   type: string;
 };
@@ -21,6 +21,7 @@ const ControlButton: React.FC<ControlButtonPropType> = (props) => {
             onClick={() => {
               navigate('/employees/create');
             }}
+            data-testid='plus-icon'
           >
             +
           </div>
@@ -31,6 +32,7 @@ const ControlButton: React.FC<ControlButtonPropType> = (props) => {
             onClick={() => {
               navigate(`/employees/${id}/edit`);
             }}
+            data-testid='edit-icon'
           >
             <img className='editControlIcon' src='/assets/icons/edit-button.svg'></img>
           </div>
@@ -41,6 +43,7 @@ const ControlButton: React.FC<ControlButtonPropType> = (props) => {
               navigate(`/employees/${id}/edit`);
             }}
             className='controlButtonBox'
+            data-testid='view-menu-button-text'
           >
             {props.controlButtonText}
           </div>
@@ -51,6 +54,7 @@ const ControlButton: React.FC<ControlButtonPropType> = (props) => {
               navigate('/employees/create');
             }}
             className='controlButtonBox'
+            data-testid='list-menu-button-text'
           >
             {props.controlButtonText}
           </div>

@@ -20,7 +20,11 @@ const Input: React.FC<InputPropTypes> = (props) => {
         onKeyPress={props.onKeyPress}
         data-testid='input-test'
       ></input>
-      {!props.value && <label className='inputLabel'>{props.label}</label>}
+      {!props.value && (
+        <label className='inputLabel' data-testid='label-test'>
+          {props.label}
+        </label>
+      )}
     </div>
   );
 };

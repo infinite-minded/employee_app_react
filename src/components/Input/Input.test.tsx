@@ -1,12 +1,12 @@
 import '@testing-library/jest-dom';
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import Input, { InputPropTypes } from './Input';
 
 describe('If input works properly', () => {
   test('If value is shown properly on input', () => {
     const InputProps: InputPropTypes = {
       value: 'name',
-      label: 'Username',
+      label: 'Email',
       type: 'text'
     };
 
@@ -19,7 +19,7 @@ describe('If input works properly', () => {
   test('If type text on input working', () => {
     const InputProps: InputPropTypes = {
       value: 'name',
-      label: 'Username',
+      label: 'Email',
       type: 'text'
     };
 
@@ -40,5 +40,34 @@ describe('If input works properly', () => {
     const element = screen.getByTestId('input-test');
 
     if (element) expect(element.getAttribute('type')).toBe('password');
+  });
+
+  test('If label displays properly when no value given', () => {
+    const InputProps: InputPropTypes = {
+      value: '',
+      label: 'Email',
+      type: 'text'
+    };
+
+    render(<Input {...InputProps} />);
+    const element = screen.getByTestId('label-test');
+
+    if (element) expect(element.innerHTML).toBe('Email');
+  });
+
+  test('If onKeyPress is triggered', () => {
+    const onKeyPress = jest.fn();
+    const InputProps: InputPropTypes = {
+      value: '',
+      label: 'Email',
+      type: 'text',
+      onKeyPress
+    };
+
+    render(<Input {...InputProps} />);
+    const element = screen.getByTestId('input-test');
+
+    fireEvent.keyPress(element);
+    expect(onKeyPress).toBeCalledTimes(1);
   });
 });
