@@ -1,0 +1,38 @@
+.input {
+    position: relative;
+}
+
+.inputField {
+    outline: none;
+    box-sizing: border-box;
+    border: 1px solid #B4B7BD;
+    border-radius: 5px;
+    padding: 10px;
+    width: 380px;
+    height: 40px;
+    caret-color: #03AEEE;
+    font-weight: bold;
+}
+
+.inputLabel {
+    position: absolute;
+    color: black;
+    font-size: 12px;
+    top: 15px;
+    left: 8px;
+    transition: 0.2s;
+    padding: 0px 5px;
+    opacity: 1;
+    pointer-events: none;
+}
+
+.inputField:focus {
+    color: black !important
+}
+
+.inputField:focus + .inputLabel
+{
+    top: -5px;
+    color: #03AEEE;
+    background-color: #fff;
+}

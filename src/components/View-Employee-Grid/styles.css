@@ -1,0 +1,23 @@
+* {
+    padding: 0px;
+    margin: 0px;
+}
+
+.employeeGrid {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: left;
+    width: 250px;
+    height: 90px;
+}
+
+.employeeGridLabel {
+    color: #8B8D9D;
+    font-weight: lighter;
+}
+
+.employeeGridValue {
+    color: #434552;
+    font-weight: 500;
+}

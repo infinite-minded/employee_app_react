@@ -1,0 +1,8 @@
+.loginButton {
+    border-radius: 5px;
+    min-width: 380px;
+    height: 40px;
+    background-color: #03AEEE;
+    color: #FFFFFF;
+    cursor: pointer;
+}

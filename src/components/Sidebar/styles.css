@@ -1,0 +1,42 @@
+* {
+    padding: 0px;
+    margin: 0px;
+}
+
+.sidebar {
+    height: calc(100vh - 77px);
+    position: fixed;
+    width: 300px;
+    z-index: 1;
+    left: 0;
+    top: 77px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    padding-top: 20px;
+    padding-left: 16px;
+}
+
+.sidemenubutton {
+    background-color: #03AEEE;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    padding-left: 15px;
+    border-radius: 30px 0% 0% 30px;
+    gap: 8px;
+    cursor: pointer;
+}
+
+.buttonIconContainer {
+    background-color: white;
+    border: 8px solid white;
+    border-radius: 50%;
+}
+
+.sideMenuText {
+    font-size: 15px;
+    font-weight: 600;
+    color: white;
+}

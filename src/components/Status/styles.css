@@ -1,0 +1,22 @@
+* {
+    padding: 0px;
+    margin: 0px;
+}
+
+.activeStatus {
+    width: 50%;
+    padding: 10px;
+    background-color: #D3F4BE;
+    border-radius: 20%/50%;
+    display: flex;
+    justify-content: center;
+}
+
+.inactiveStatus {
+    width: 50%;
+    padding: 10px;
+    background-color: #FFBFBF;
+    border-radius: 20%/50%;
+    display: flex;
+    justify-content: center;
+}

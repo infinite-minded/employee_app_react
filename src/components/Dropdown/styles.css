@@ -1,0 +1,30 @@
+.dropdown {
+    position: relative;
+}
+
+.dropdownField {
+    outline: none;
+    box-sizing: border-box;
+    background-color: white;
+    color: black;
+    text-decoration: none;
+    border: 1px solid #B4B7BD;
+    border-radius: 5px;
+    padding: 10px;
+    width: 380px;
+    height: 40px;
+    font-weight: bold;
+    z-index: 1;
+}
+
+.dropdownLabel {
+    position: absolute;
+    color: #03AEEE;
+    background-color: #fff;
+    font-size: 12px;
+    top: -5px;
+    left: 8px;
+    padding: 0px 5px;
+    opacity: 1;
+    pointer-events: none;
+}

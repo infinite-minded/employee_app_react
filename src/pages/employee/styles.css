@@ -1,0 +1,122 @@
+* {
+    padding: 0px;
+    margin: 0px;
+}
+
+.employeeListContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.employeeAtrribs {
+    box-shadow: 0px 3px 6px #00000029;
+    height: 50px;
+    width: calc(100% - 360px);
+    margin-top: 10px;
+    margin-left: 315px;
+    margin-right: 15px;
+    background-color: #EAF9FF;
+    border-radius: 5px;
+    display: flex;
+    padding: 0 15px;
+    align-items: center;
+    font-weight: bold;
+    font-size: 13px;
+}
+
+.viewEmployeeContainer {
+    box-shadow: 0px 3px 6px #00000029;
+    width: calc(100% - 360px);
+    margin-top: 10px;
+    margin-left: 315px;
+    margin-right: 15px;
+    background-color: #FDFDFD;
+    border-radius: 5px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    padding: 0 20px;
+    align-items: center;
+    font-weight: bold;
+    font-size: 13px;
+}
+
+.createEmployeeContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    box-shadow: 0px 3px 6px #00000029;
+    border-radius: 5px;
+    width: calc(100% - 360px);
+    margin-left: 315px;
+    margin-right: 15px;
+    padding-top: 30px;
+    padding-left: 20px;
+    padding-bottom: 40px;
+}
+
+.formContainer {
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: flex-start;
+    border-radius: 5px;
+    padding-left: 10px;
+    padding-bottom: 10px;
+    gap: 60px;
+}
+
+.addressFormContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.statusGrid {
+    margin: 0;
+    padding-top: 14px;
+}
+
+.attribHeading {
+    width: calc(100%/6);
+    display: flex;
+    justify-content: center;
+}
+
+.statusHeadingText {
+    width: 50%;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.createEmployeeButtons {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    margin-top: 30px;
+    padding-left: 10px;
+    padding-top: 10px;
+}
+
+.createEmployeeCreateButton {
+    border-radius: 5px;
+    min-width: 200px;
+    height: 40px;
+    background-color: #03AEEE;
+    color: #FFFFFF;
+    cursor: pointer;
+}
+
+.createEmployeeCancelButton {
+    border: 1px solid #8A8C8F;
+    border-radius: 5px;
+    min-width: 200px;
+    height: 40px;
+    background-color: #FFFFFF;
+    color: #8A8C8F;
+    cursor: pointer;
+}

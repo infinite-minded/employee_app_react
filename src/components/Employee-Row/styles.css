@@ -1,0 +1,157 @@
+* {
+    padding: 0px;
+    margin: 0px;
+}
+
+.deleteBoxContainer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 3;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(0, 0, 0, 0.61); 
+    backdrop-filter: blur(5px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.deleteBox {
+    background-color: white;
+    width: 300px;
+    padding-top: 15px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-bottom: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.closeDeleteBox {
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex: 1;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+.closeDeleteBoxButton {
+    font-size: 20px;
+    background: transparent;
+    cursor: pointer;
+}
+
+.areYouSure {
+    font-size: large;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.confirmQuestion {
+    font-size: medium;
+    font-weight: 400;
+    width: 200px;
+    display: flex;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.deleteBoxButtons {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    margin-bottom: 15px;
+}
+
+.deleteBoxConfirm {
+    cursor: pointer;
+    width: 100px;
+    height: 30px;
+    background-color: #03AEEE;
+    color: white;
+    outline: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+}
+
+.deleteBoxCancel {
+    cursor: pointer;
+    width: 100px;
+    height: 30px;
+    background-color: white;
+    color: #63667A;
+    outline: none;
+    border: 1px solid #63667A;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 3px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+}
+
+.employeeDetails {
+    box-shadow: 5px 3px 9px #00000029;
+    height: 50px;
+    width: calc(100% - 360px);
+    margin-top: 10px;
+    margin-left: 315px;
+    margin-right: 15px;
+    border-radius: 5px;
+    display: flex;
+    padding: 0 15px;
+    align-items: center;
+    font-weight:lighter;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.employeeDetails:hover {
+    box-shadow: 5px 4px 2px #00000029;;
+    background-color: #eaf9ff77;
+}
+
+.attribs {
+    width: calc(100%/7);
+    display: flex;
+    justify-content: center;
+}
+
+.actionButtons {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+}
+
+.actionButton {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    width: 10px;
+    height: 10px;
+}
+
+.deleteIcon {
+    filter: invert(39%) sepia(18%) saturate(4497%) hue-rotate(332deg) brightness(101%) contrast(96%);
+    width: 15px;
+}
+
+.editIcon {
+    filter: invert(72%) sepia(80%) saturate(4694%) hue-rotate(149deg) brightness(92%) contrast(87%);
+    width: 15px;
+}
+
+.notAllowed {
+    cursor: not-allowed;
+}
+
+.disableClick {
+    pointer-events: none;
+}
